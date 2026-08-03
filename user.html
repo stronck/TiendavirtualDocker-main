@@ -11,19 +11,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
-<script>
-    /* VALIDACION PAGINA PROTEGIDA
-    al ponerse este script antes que el script usuarios.js evita el parpadeo ya que se carga de primeras antes que el css,
-    si el usuario no esta logueado e intenta acceder a user.html con la URL, sera redireccionado a login,
-    si el usuario le da atras en el navegador al no existir un usuario lo redirecciona a index.html,*/
-    (function () {
-        const usuario = localStorage.getItem('usuario');
-        if (!usuario) {
-            window.location.replace('index.html');
-
-        }
-    })();
-</script>
 
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
     <div class="container-fluid">
