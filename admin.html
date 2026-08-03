@@ -11,27 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
-<script>
-    /* VALIDACION PAGINA PROTEGIDA
-     al ponerse este script antes que el script usuarios.js evita el parpadeo ya que se carga de primeras antes que el css,
-     si esta logueado pero no es rol admin e intenta acceder a admin.html por la URL lo redirecciona a index.html
-     si el usuario no esta logueado e intenta acceder a paginas sensibles, sera redireccionado a index.html,
-     si el usuario le da atras en el navegador al no existir un usuario lo redirecciona a index.html */
-    (function () {
-        const usuario = localStorage.getItem('usuario');
-        if (usuario) {
-            const datosUsuario = JSON.parse(usuario);
-            if (datosUsuario.rol !== 'admin') {
-                // Si el rol no es 'admin', redirige al usuario a index.html
-                window.location.replace('index.html');
-            }
-            // Si el rol es 'admin', continúa con la carga de la página
-        } else {
-            // Si no hay un usuario en localStorage, redirige a index.html
-            window.location.replace('index.html');
-        }
-    })();
-</script>
+
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="index.html"><img src="img/favicon.png" alt="Logo" width="50">OriginalFragance</a>
