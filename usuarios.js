@@ -50,79 +50,7 @@ mostrarUsuarioNavbar();
 
 
 
-async function registrarUsuario() {
-    const nombreUsuario = document.getElementById('nombreUsuario').value;
-    const contrasena = document.getElementById('contrasena').value;
-    const confirmarContrasena = document.getElementById('confirmarContrasena').value;
-    const nombres = document.getElementById('nombres').value;
-    const apellidos = document.getElementById('apellidos').value;
-    const celular = document.getElementById('celular').value;
-    const correo = document.getElementById('correo').value;
-    const direccionEnvio = document.getElementById('direccionEnvio').value;
-    if (contrasena !== confirmarContrasena) {
-            alert('Las contraseñas no coinciden.');
-            return;
-        }
-    const usuario = { nombreUsuario, contrasena, nombres, apellidos, celular, correo, direccionEnvio };
 
-    // Recibe la respuesta del backend en json
-    const response = await fetch('/api/usuarios/registrar', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        // convierte el objeto de javascript del formulario a json para q fetch lo pueda enviar a el backend
-        body: JSON.stringify(usuario)
-    });
-    if (response.ok) {
-        alert('Usuario registrado correctamente');
-        window.location.href = 'iniciarsesion.html';
-    } else {
-        alert('Error al registrar el usuario');
-    }
-}
-// registroForm formulario html
-const registroForm = document.getElementById('registroForm');
-if (registroForm) {
-    registroForm.addEventListener('submit', (e) => {
-// evita que se recargue la pagina al dar clic en el boton de submit guardar del formulario y se ejecute la funcion registrarUsuario
-        e.preventDefault();
-        registrarUsuario();
-    });
-}
-
-
-// async declara que la funcion retornara una promesa, permitiendo usar await dentro de ella para esperar la respuesta del backend sin bloquear el hilo principal de javascript
- async function iniciarSesion() {
-     const nombreUsuario = document.getElementById('nombreUsuario').value;
-     const contrasena = document.getElementById('contrasena').value;
-         // 2. Recibe la respuesta del backend en json
-         const response = await fetch('/api/usuarios/iniciar-sesion', {
-             method: 'POST',
-             headers: { 'Content-Type': 'application/json' },
-             // 1. convierte el objeto de javascript del formulario a json para q fetch lo pueda enviar a el backend
-             body: JSON.stringify({ nombreUsuario, contrasena })
-         });
-         if (!response.ok) {
-             alert('Credenciales incorrectas o usuario no existe en la base de datos');
-             return;
-         }
-         // 3. convierte la respuesta json a objeto de javascript y se guarda en la constante usuario
-         const usuario = await response.json();
-         if (usuario && usuario.rol) {
-         // 4. guarda en localstorage el usuario en json y redirige a la pagina segun su rol (admin o user)
-             localStorage.setItem('usuario', JSON.stringify(usuario));
-             window.location.href = usuario.rol.toLowerCase() === 'admin' ? 'admin.html' : 'user.html';
-         } else {
-             alert('Error al iniciar sesión: usuario sin rol');
-         }
-     }
-// loginForm formulario html
-const loginForm = document.getElementById('loginForm');
-if (loginForm) {
-    loginForm.addEventListener('submit', (e) => {
-// evita que se recargue la pagina al dar clic en el boton de submit guardar del formulario y se ejecute la funcion registrarUsuario
-        e.preventDefault();
-        iniciarSesion();
-    });
 }
 
 
