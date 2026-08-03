@@ -134,11 +134,3 @@ footer a {
     color: #bbb; /* Gris más claro */
 }
 /* ---------------------------------------------------------------------------------------------------------- */
-/* Animaciones y mejoras visuales en el carrito.html*/
-    .animate-btn {
-        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    }
-    .animate-btn:hover {
-        transform: scale(1.05);
-        box-shadow: 0 4px 10px rgba(0, 128, 0, 0.3);
-    }
